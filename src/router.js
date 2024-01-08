@@ -39,7 +39,7 @@ const initRouter = () => {
     // 클릭 이벤트가 발생했을 때, 해당 target이 a 태그라면 페이지 이동 함수 실행
     // 별도로 history 설정해주는 함수를 만들어서 반환해서 사용해도 동작하지만 그렇게 할 경우 웹 접근성을 지키기 어렵고,(모든 a 태그의 동작을 막고, 해당 함수로 대체해야 한다.) 관리하기 버겁다고 생각됨
     document.body.addEventListener("click", e => {
-      if (e.target.tagName === "A") {
+      if (e.target.matches("[data-link]")) {
         e.preventDefault();
 
         navigateTo(e.target.href);
