@@ -23,9 +23,4 @@
 ### 23.01.11
 router에서 lazy loading 구현
 - 페이지 로딩하는 부분에서 구현
-  - 네트워크 응답 완료 시간 40~50ms -> 30~40ms로 감소 것 확인
-
-
-
-
-참고 : https://velog.io/@nemo/Vanilla-JavaScript-SPA-1
+  - 네트워크 응답 완료 시간 40~50ms -> 30~40ms로 감소 확인
