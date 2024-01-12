@@ -6,25 +6,21 @@ const navigateTo = (url) => {
 
 const router = async () => {
   // lazy loading 적용
-  const routes = [
-    { path: "/", page: () => import("./pages/dashboard/Dashboard.js") },
-    { path: "/posts", page: () => import("./pages/post/Post.js") },
-    { path: "/settings", page: () => import("./pages/setting/Setting.js") },
-    { path: "/404", page: () => import("./pages/notfound/NotFound.js") },
-  ];
+  const routes = {
+    "/": () => import("./pages/dashboard/Dashboard.js"),
+    "/posts": () => import("./pages/post/Post.js"),
+    "/settings": () => import("./pages/setting/Setting.js"),
+    "/404": () => import("./pages/notfound/NotFound.js"),
+  };
 
   // 현재 url과 일치하는 경로의 페이지 획득
-  let match = routes.find((route) => route.path === location.pathname);
-
   // 일치하는 페이지가 없을 경우 404 할당
-  if (!match) {
-    match = routes[routes.length - 1];
-  }
+  const match = routes[location.pathname] ?? routes["/404"];
 
   // 렌더링 에러 처리
   try {
     // 해당 페이지 클래스 생성 후 render
-    document.querySelector('#app').innerHTML = await (new (await match.page()).default).render();
+    document.querySelector('#app').innerHTML = await (new (await match()).default).render();
   } catch (error) {
     // 추후 에러 페이지 작성 후 렌더링할 것
     console.log(error);
