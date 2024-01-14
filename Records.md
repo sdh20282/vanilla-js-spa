@@ -29,3 +29,8 @@ router에서 lazy loading 구현
 ### 23.01.12
 router object로 최적화
 - 경로를 array -> object로 변경
+
+---
+### 23.01.14
+router function -> class로 변경
+Component class 틀 작성
