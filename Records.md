@@ -32,5 +32,8 @@ router object로 최적화
 
 ---
 ### 23.01.14
-router function -> class로 변경
+router 변경
+- router를 function -> class로 변경
+  - routes를 router.js 파일 내부가 아닌 index.js에서 받도록 하여 좀 더 관리하기 용이하게 하고자 함
+  - 해당 과정에서 initRouter 함수는 외부에서 동작시킬 필요가 없으므로 위치 변경
 Component class 틀 작성
