@@ -14,7 +14,8 @@ export class Router {
     // 렌더링 에러 처리
     try {
       // 해당 페이지 클래스 생성 후 render
-      document.querySelector('#app').innerHTML = await (new (await match()).default).render();
+      // document.querySelector('#app').innerHTML = await (new (await match()).default()).render();
+      await (new (await match()).default(document.querySelector('#app')));
     } catch (error) {
       // 추후 에러 페이지 작성 후 렌더링할 것
       console.log(error);

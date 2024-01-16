@@ -1,12 +1,7 @@
-import AbstractPage from "../../classes/AbstractPage.js";
+import Component from "../../core/Component.js";
 
-export default class extends AbstractPage {
-  constructor() {
-    super();
-    this.setTitle("Dashboard");
-  }
-
-  async render() {
+export default class extends Component {
+  templete() {
     return `
 		<h1>Welcome!</h1>
 		<p>This is Dashboard page.</p>
