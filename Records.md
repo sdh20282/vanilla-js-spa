@@ -36,3 +36,11 @@ router 변경
 - router를 function -> class로 변경
   - routes를 router.js 파일 내부가 아닌 index.js에서 받도록 하여 좀 더 관리하기 용이하게 하고자 함
   - 해당 과정에서 initRouter 함수는 외부에서 동작시킬 필요가 없으므로 위치 변경
+
+---
+### 23.01.17
+reactivity 구현
+- Proxy를 이용하여 reactivity 구현
+  - Proxy와 Object.defineProperty 중 Proxy 선택
+  - 역할은 거의 비슷하지만 Proxy가 조금 더 빠르고 가벼움
+  - constructor가 실행된 이후 state에 Proxy를 씌워야 정상 동작함

@@ -1,31 +1,28 @@
+import reactive from "./Reactivity.js";
+
 export default class Component {
   state;
-  props;
   target;
 
-  constructor(target, props) {
+  constructor({ target }) {
     this.target = target;
-    this.props = props;
-    this.setup();
+    this.state = {};
+
     this.render();
-    this.setEvent();
+  };
+
+  initReactiveProxy() {
+    this.state = reactive({ target: this.state || {}, callback: this.render.bind(this) })
+    this.render();
   }
 
-  setup() { }; // state 초기화
+  templete() { return `` };
 
-  templete() { return `` }; // 렌더링 할 HTML 반환
-
-  componentDidMount() { }; // 렌더링 직후 수행해야 할 로직
-
-  setEvent() { }; // 이벤트 
+  setEvent() { };
 
   render() {
     this.target.innerHTML = this.templete();
-    this.componentDidMount();
-  }
 
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render(); // state가 변경되면 재렌더링 수행
-  }
+    this.setEvent();
+  };
 }

@@ -1,21 +1,26 @@
+import reactive from "./core/Reactivity.js";
+
 export class Router {
-  routes;
+  $root;
+  $routes;
 
   constructor(routes) {
-    this.routes = routes;
+    this.$root = document.querySelector('#app');
+    this.$routes = routes;
     this.initRouter();
   }
 
   async loadRouter() {
     // 현재 url과 일치하는 경로의 페이지 획득
     // 일치하는 페이지가 없을 경우 404 할당
-    const match = this.routes[location.pathname] ?? this.routes["/404"];
+    const match = this.$routes[location.pathname] ?? this.$routes["/404"];
 
     // 렌더링 에러 처리
     try {
       // 해당 페이지 클래스 생성 후 render
       // document.querySelector('#app').innerHTML = await (new (await match()).default()).render();
-      await (new (await match()).default(document.querySelector('#app')));
+      await (new (await match()).default({ target: this.$root }));
+      // await (reactive(new (await match()).default({ target: this.$root }), this.loadRouter));
     } catch (error) {
       // 추후 에러 페이지 작성 후 렌더링할 것
       console.log(error);
