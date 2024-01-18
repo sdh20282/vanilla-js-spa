@@ -3,7 +3,7 @@ const reactive = ({ target, callback }) => {
   // 프록시에서 사용하기 위한 핸들러
   const handler = {
     // getter 재정의
-    get: function (target, property) {
+    get: function (target, property, receiver) {
       // array에서 원소를 추가, 삭제하거나
       // object에서 프로퍼티를 수정할 경우에는
       // 두 경우 모두 call by reference이기 때문에 get이 호출
@@ -12,7 +12,7 @@ const reactive = ({ target, callback }) => {
         return new Proxy(target[property], handler);
       }
 
-      return target[property];
+      return Reflect.get(target, property, receiver);
     },
     // setter 재정의
     set: function (target, property, value, receiver) {
