@@ -22,9 +22,11 @@ export default class Dashboard extends Component {
 
 	setEvent() {
 		document.querySelector('#increase').addEventListener('click', () => {
+			// this.state.count.push(1);
 			this.state.count++;
 		});
 		document.querySelector('#decrease').addEventListener('click', () => {
+			// this.state.count.pop();
 			this.state.count--;
 		});
 	}

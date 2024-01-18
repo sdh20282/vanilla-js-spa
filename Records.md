@@ -44,3 +44,12 @@ reactivity 구현
   - Proxy와 Object.defineProperty 중 Proxy 선택
   - 역할은 거의 비슷하지만 Proxy가 조금 더 빠르고 가벼움
   - constructor가 실행된 이후 state에 Proxy를 씌워야 정상 동작함
+
+---
+### 23.01.18
+mutable reactivity 구현
+- Proxy를 이용하여 mutable reactivity 구현
+  - array에서 원소를 추가, 삭제하거나
+  - object에서 프로퍼티를 수정할 경우에는
+  - 두 경우 모두 call by reference이기 때문에 get이 호출
+  - 따라서 getter를 재정의하여 target의 타입이 null이 아니고, object나 array일 경우에는 새로운 Proxy를 씌워 반환하여 mutable을 유지

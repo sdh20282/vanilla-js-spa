@@ -2,12 +2,24 @@
 const reactive = ({ target, callback }) => {
   // 프록시에서 사용하기 위한 핸들러
   const handler = {
-    // setter만 재정의
-    set(target, prop, value, receiver) {
+    // getter 재정의
+    get: function (target, property) {
+      // array에서 원소를 추가, 삭제하거나
+      // object에서 프로퍼티를 수정할 경우에는
+      // 두 경우 모두 call by reference이기 때문에 get이 호출
+      // 따라서 target의 타입이 null이 아니고, object나 array일 경우에는 새로운 Proxy를 씌워 반환하여 mutable을 유지
+      if ((typeof target[property] === 'object' || typeof target[property] === 'array') && target[property] !== null) {
+        return new Proxy(target[property], handler);
+      }
+
+      return target[property];
+    },
+    // setter 재정의
+    set: function (target, property, value, receiver) {
       // 수정하고자 하는 값이 주어진 값과 다를 경우에만 
-      if (target[prop] != value) {
+      if (target[property] != value) {
         // 결과 반영
-        Reflect.set(target, prop, value, receiver);
+        Reflect.set(target, property, value, receiver);
 
         // 콜백 실행
         callback();

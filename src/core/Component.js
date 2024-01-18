@@ -12,7 +12,7 @@ export default class Component {
   };
 
   initReactiveProxy() {
-    this.state = reactive({ target: this.state || {}, callback: this.render.bind(this) })
+    this.state = reactive({ target: this.state, callback: this.render.bind(this) })
     this.render();
   }
 
