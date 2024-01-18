@@ -52,4 +52,4 @@ mutable reactivity 구현
   - array에서 원소를 추가, 삭제하거나
   - object에서 프로퍼티를 수정할 경우에는
   - 두 경우 모두 call by reference이기 때문에 get이 호출
-  - 따라서 getter를 재정의하여 target의 타입이 null이 아니고, object나 array일 경우에는 새로운 Proxy를 씌워 반환하여 mutable을 유지
+  - 따라서 getter를 재정의하여 target의 타입이 null이 아니고, object일 경우에는 새로운 Proxy를 씌워 반환하여 mutable을 유지
