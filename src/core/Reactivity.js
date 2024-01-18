@@ -17,7 +17,7 @@ const reactive = ({ target, callback }) => {
     // setter 재정의
     set: function (target, property, value, receiver) {
       // 수정하고자 하는 값이 주어진 값과 다를 경우에만 
-      if (target[property] != value) {
+      if (target[property] !== value) {
         // 결과 반영
         Reflect.set(target, property, value, receiver);
 
