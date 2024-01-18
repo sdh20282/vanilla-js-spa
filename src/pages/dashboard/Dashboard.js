@@ -1,6 +1,7 @@
 import Component from "../../core/Component.js";
 
 export default class Dashboard extends Component {
+	// state = { count: [] };
 	state = { count: 0 };
 
 	constructor({ target }) {
