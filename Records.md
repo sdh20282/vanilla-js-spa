@@ -54,10 +54,15 @@ mutable reactivity 구현
   - 두 경우 모두 call by reference이기 때문에 get이 호출
   - 따라서 getter를 재정의하여 target의 타입이 null이 아니고, object일 경우에는 새로운 Proxy를 씌워 반환하여 mutable을 유지
 
-  ---
-  ### 23.01.24 ~ 23.01.26
-  component 구현
-  - shadow dom을 활용한 컴포넌트 구현 및 테스트
-    - shadow dom은 기존 dom과 분리되어 스타일, 스크립트 등이 관리되고, 이러한 점은 컴포넌트에서도 유사하게 활용된다고 생각함
-    - props 전달 확인
+---
+### 23.01.24 ~ 23.01.26
+component 구현
+- shadow dom을 활용한 컴포넌트 구현 및 테스트
+  - shadow dom은 기존 dom과 분리되어 스타일, 스크립트 등이 관리되고, 이러한 점은 컴포넌트에서도 유사하게 활용된다고 생각함
+  - props 전달 확인
     
+---
+### 23.01.27
+router 부분 문제 해결
+- shadow dom을 사용하여 router를 구현할 경우 custom element 재정의 문제 발생
+  - 페이지 별로 태그를 만들어서 중복 문제 해결

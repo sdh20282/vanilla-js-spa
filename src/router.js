@@ -15,8 +15,17 @@ export default class Router {
 
     // 렌더링 에러 처리
     try {
-      // 해당 페이지 클래스 생성 후 render
-      customElements.define('single-page-application', (await match()).default);
+      // 페이지 별 고유한 컴포넌트 이름 생성
+      const componentName = 'single-page-application' + location.pathname.replace(/\//g, '-');
+      const componentClass = (await match()).default;
+
+      // 컴포넌트가 이미 정의되어 있지 않다면 정의
+      if (!customElements.get(componentName)) {
+        customElements.define(componentName, componentClass);
+      }
+
+      // index.html의 요소를 새로운 컴포넌트로 교체
+      this.$root.innerHTML = `<${componentName}></${componentName}>`;
     } catch (error) {
       // 추후 에러 페이지 작성 후 렌더링할 것
       console.log(error);
