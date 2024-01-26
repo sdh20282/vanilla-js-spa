@@ -1,36 +1,18 @@
 import Component from "../../core/Component.js";
 
+import Counter from "./Counter.js";
+
 export default class Dashboard extends Component {
-	// state = { count: [] };
-	state = { count: 0 };
-
-	constructor({ target }) {
-		super({ target }).initReactiveProxy();
-	}
-
-	templete() {
-		return `
-		<h1>Welcome!</h1>
-		<p>This is Dashboard page.</p>
-		<a href="/posts" data-link>
-			View recent posts
-		</a>
-		<p>${this.state.count}</p>
-		<button id="increase">increase</button>
-		<button id="decrease">decrease</button>
-	`
+	components = {
+		'child-component': Counter,
 	};
 
-	setEvent() {
-		document.querySelector('#increase').addEventListener('click', () => {
-			// this.state.count.push(1);
-			this.state.count++;
-		});
-		document.querySelector('#decrease').addEventListener('click', () => {
-			// this.state.count.pop();
-			this.state.count--;
-		});
-	}
+	render() {
+		return `
+			<h1>Welcome! this is parent</h1>
+			<child-component title="this is child"></child-component>
+		`
+	};
 }
 
 

@@ -7,7 +7,7 @@ const reactive = ({ target, callback }) => {
       // array에서 원소를 추가, 삭제하거나
       // object에서 프로퍼티를 수정할 경우에는
       // 두 경우 모두 call by reference이기 때문에 get이 호출
-      // 따라서 target의 타입이 null이 아니고, object일 경우에는 (array도 object의 타입) 새로운 Proxy를 씌워 반환하여 mutable을 유지
+      // 따라서 target의 타입이 null이 아니고, object일 경우에는 (array도 object 타입) 새로운 Proxy를 씌워 반환하여 mutable을 유지
       if (typeof target[property] === 'object' && target[property] !== null) {
         return new Proxy(target[property], handler);
       }

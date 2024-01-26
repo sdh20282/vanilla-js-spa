@@ -1,10 +1,9 @@
 import Component from "../../core/Component.js";
 
-export default class extends Component {
-  templete() {
+export default class Post extends Component {
+  render() {
     return `
-      <h1>Posts</h1>
-      <p>You're viewing the posts!</p>
-    `;
-  }
+		<h1>Post</h1>
+	`
+  };
 }
