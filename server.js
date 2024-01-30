@@ -13,5 +13,7 @@ app.get("/*", (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log("Server running...")
+  console.log('\x1b[1m%s\x1b[0m',`🏃 Now running on port [${process.env.PORT || 3000}]`);
+  console.log(``);
+  console.log(`>> http://localhost:${process.env.PORT || 3000}`);
 });
