@@ -1,9 +1,19 @@
 import reactive from "./Reactivity.js";
 
+const events = ["click"];
+
 export default class Component extends HTMLElement {
+  // 상태
   state;
+
+  // 하위 컴포넌트
   components;
+
+  // 상위 컴포넌트로부터 전달된 props
   props;
+
+  // 이벤트 핸들러에 대한 참조
+  eventHandler;
 
   constructor() {
     super();
@@ -11,6 +21,8 @@ export default class Component extends HTMLElement {
     this.state = this.state || {};
     this.components = this.components || {};
     this.props = this.props || {};
+    this.eventHandler = this.eventHandler || {};
+
     this.shadow = this.attachShadow({ mode: 'open' });
   }
 
@@ -59,12 +71,38 @@ export default class Component extends HTMLElement {
     return ``;
   }
 
-  setEvent() { };
+  // 이벤트를 위한 함수
+  // 이벤트 위임을 통해 이벤트 처리
+  addEvent() {
+    for (const event of events) {
+      this.eventHandler[event] = e => {
+        const target = e.target;
+        const handlerName = target.getAttribute(event);
+
+        if (handlerName && this[handlerName]) {
+          this[handlerName]();
+        }
+      };
+
+      this.shadowRoot.addEventListener(event, this.eventHandler[event]);
+    }
+  }
+
+  // 이벤트 제거를 위한 함수
+  removeEvent() {
+    for (const event of events) {
+      if (this.eventHandler[event]) {
+        this.shadowRoot.removeEventListener(event, this.eventHandler[event]);
+        this.eventHandler[event] = null;
+      }
+    }
+  }
 
   // render를 위한 함수
   renderComponent() {
+    this.removeEvent();
     this.shadow.innerHTML = this.render();
-    this.setEvent();
+    this.addEvent();
 
     for (const component in this.components) {
       if (!customElements.get(component)) {

@@ -21,18 +21,9 @@ export default class Counter extends Component {
         <p>${this.props.title}</p>
         <p>${this.state.count}</p>
         <p>${this.state.count * 2}</p>
-        <button id="increase">increase</button>
-        <button id="decrease">decrease</button>
+        <button click="increase">increase</button>
+        <button click="decrease">decrease</button>
       </div>
     `
-  };
-
-  setEvent() {
-    this.shadow.querySelector('#increase').addEventListener('click', () => {
-      this.increase();
-    });
-    this.shadow.querySelector('#decrease').addEventListener('click', () => {
-      this.decrease();
-    });
   }
 }
