@@ -100,14 +100,26 @@ export default class Component extends HTMLElement {
 
   // render를 위한 함수
   renderComponent() {
-    this.removeEvent();
-    this.shadow.innerHTML = this.render();
-    this.addEvent();
-
-    for (const component in this.components) {
-      if (!customElements.get(component)) {
-        customElements.define(component, this.components[component]);
-      }
+    // 예약된 렌더링이 있으면 취소
+    if (this.renderRaf) {
+      cancelAnimationFrame(this.renderRaf);
     }
+
+    // 다음 repaint 직전에 렌더링 수행을 예약
+    this.renderRaf = requestAnimationFrame(() => {
+      this.removeEvent();
+      this.shadow.innerHTML = this.render();
+      this.addEvent();
+
+
+      for (const component in this.components) {
+        if (!customElements.get(component)) {
+          customElements.define(component, this.components[component]);
+        }
+      }
+
+      // 렌더링 완료 후 예약 ID 초기화
+      this.renderRaf = null;
+    });
   }
 }
