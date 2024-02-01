@@ -3,17 +3,11 @@ import reactive from "./Reactivity.js";
 const events = ["click"];
 
 export default class Component extends HTMLElement {
-  // 상태
-  state;
-
-  // 하위 컴포넌트
-  components;
-
-  // 상위 컴포넌트로부터 전달된 props
-  props;
-
-  // 이벤트 핸들러에 대한 참조
-  eventHandler;
+  state;          // 상태
+  components;     // 하위 컴포넌트
+  props;          // 상위 컴포넌트로부터 전달된 props
+  eventHandler;   // 이벤트 핸들러에 대한 참조
+  renderRaf;      // requestAnimationFrame에서 수행해야 할 렌더링
 
   constructor() {
     super();
