@@ -99,4 +99,8 @@ router 부분 문제 해결
 ---
 ### 24.08.16
 shadow dom -> custom element로 변경
-beforeMount, mounted, beforeUpdate, updated 메서드 추가, 라이프 사이클에 반영
+- shadow dom 제거
+
+  
+beforeMount, mounted, beforeUpdate, updated 메서드 추가
+- 라이프 사이클에 반영
