@@ -1,8 +1,9 @@
 {
   "name": "vanilla-js-spa",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Vanilla Javascript SPA",
+  "main": "./src/index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
